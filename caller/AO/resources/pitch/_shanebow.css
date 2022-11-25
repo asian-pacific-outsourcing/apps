@@ -1,0 +1,80 @@
+/* <link rel="SHORTCUT ICON" HREF="http://img.ultimate-guitar.com/img/ug.ico"> */
+
+/***** Colors
+For the pea soup with purple theme:
+ PAGEBG: #d8da3d; Main page background color #d8da3d 216, 218, 61
+ PAGEFG: #336600; Main page foreground color #336600
+ ACCENT: purple;
+**********/
+body
+  {
+  padding-left: 2em;
+  font-family: Helvetica, Geneva, Arial, SunSans-Regular, sans-serif;
+  color: #336600;
+/*  background-color: #d8da3d; */
+  background-color: white;
+  }
+h1,h2,h3,h4,h5
+  {
+  color: purple;
+  }
+/*
+address
+  {
+  margin-top: 1em;
+  padding-top: 1em;
+  border-top: thin dotted
+  }
+*/
+blockquote address
+  {
+	font-weight: normal;
+	text-align: right;
+	border-bottom: thin dotted
+  }
+blockquote
+	{
+	text-align: center;
+	font-style: italic;
+	font-weight: bold;
+	}
+pre
+  {
+  font-family: monospace;
+  }
+thead
+  {
+  font-weight: bold;
+  background: #336600;
+  color: #d8da3d
+	}
+ul.navbar
+  {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 8em;
+  left: 1em;
+  width: 8em
+  }
+ul.navbar li
+  {
+  background: #336600;
+  margin: 0.5em 0;
+  padding: 0.3em;
+  border-left: 0.7em solid purple;
+  }
+ul.navbar a
+  {
+  text-decoration: none;
+  color: #d8da3d
+  }
+a:link
+  {
+  color: blue
+  }
+a:visited
+  {
+  color: purple
+  }

@@ -1,0 +1,3 @@
+Main-Class: com.apo.apps.AppServer._AppServer
+Class-Path: _sbcommon.jar _sbdao.jar _apo.jar _apoadmin.jar commons-email-1.2.jar mail.jar . 
+

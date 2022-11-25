@@ -1,0 +1,3 @@
+Main-Class: com.apo.apps.manager.Mgr._Mgr
+Class-Path: _sbcommon.jar _apo.jar _apoclient.jar commons-email-1.2.jar mail.jar . 
+

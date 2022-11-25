@@ -1,0 +1,2 @@
+Main-Class: com.apo.apps.RawAdmin._RawAdmin
+Class-Path: _sbcommon.jar _sbdao.jar _apo.jar _apoadmin.jar commons-email-1.2.jar mail.jar . 

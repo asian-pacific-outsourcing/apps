@@ -1,0 +1,63 @@
+<HTML>
+<HEAD>
+  <META NAME="AUTHOR" CONTENT="Rick Salamone">
+  <TITLE>Secured Server Operation</TITLE>
+</HEAD>
+<BODY>
+
+<A HREF="toc.html"><IMG SRC="back.gif" WIDTH="42" HEIGHT="22" ALIGN="RIGHT" NATURALSIZEFLAG="3" BORDER="0">Contents</A>
+<H1><IMG SRC="logomedium.gif" ALIGN="MIDDLE" NATURALSIZEFLAG="3">Secured Server Operation</H1>
+<P>&nbsp;</P>
+
+<H2>Overview</H2>
+<P>For secure operation, the <I>Application Server</I> authenticates itself
+  to clients using <I>Public Key Infrastructure (PKI)</I> credentials in the
+  form of <I>X509Certificates</I>.  You must create the server's credentials
+  before attempting to run the server or clients with the
+  <A HREF="cmdline.html">x509 command line option</A>.</P>
+
+<P>The server is currently hardcoded to look for its credentials in
+   a file called <I>"testkeys"</I>. This file must be placed in the
+   same directory as the server's jar file.</I></P>
+
+<P>The easiest way to create the SSL/TLS credentials is to use the
+   Java <I>keytool</I>. The keytool.exe program is found in the
+   <I>bin</I> subdirectory of the JDK installation directory. A
+   shortcut may be created to this program, or the directory may
+   be placed in the machine's <I>path variable</I>. An example follows.
+
+<H2>Creating an X509 Certificate</H2>
+<P>This example shows how to create credentials for a site,
+   <B>"spank.apo.com"</B> owned by <I>Asia Pacific Outsourcing</I>,
+   located in Hong Kong. Obviously these values need to change!!
+</P>
+
+<P>Note: User responses are <B>emboldened</B> and <I>Enter</I>
+  represents your end-of-line key.</P>
+
+<TT>
+    % <B>keytool -genkey -keyalg rsa -keystore testkeys -alias widgets</B><BR>
+    Enter keystore password:  <B>passphrase</B><BR>
+    What is your first and last name?<BR>
+    [Unknown]:  <B>spank.apo.com</B> <I>Enter</I><BR>
+    What is the name of your organizational unit?<BR>
+    [Unknown]:  <B>Customer Spank Group</B> <I>Enter</I><BR>
+    What is the name of your organization?<BR>
+    [Unknown]:  <B>Asia Pacific Outsourcing</B> <I>Enter</I><BR>
+    What is the name of your City or Locality?<BR>
+    [Unknown]:  <B>Hong Kong</B> <I>Enter</I><BR>
+    What is the name of your State or Province?<BR>
+    [Unknown]:  <B>HK</B> <I>Enter</I><BR>
+    What is the two-letter country code for this unit?<BR>
+    [Unknown]:  <B>HK</B> <I>Enter</I><BR>
+    Is CN=spank.apo.com, OU=Customer Spank Group, O="Asia Pacific Outsourcing",
+    L=Hong Kong, ST=HK, C=HK correct?<BR>
+    [no]:  <B>yes</B> <I>Enter</I><BR>
+
+    Enter key password for <mykey>
+    (RETURN if same as keystore password):   <I>Enter</I><BR>
+</TT>
+<BR>Updated: Wednesday, October 20, 2010 19:33:56
+<P><A HREF="toc.html"><IMG SRC="back.gif" WIDTH="42" HEIGHT="22" ALIGN="BOTTOM" NATURALSIZEFLAG="3" BORDER="0">Contents</A>
+</BODY>
+</HTML>

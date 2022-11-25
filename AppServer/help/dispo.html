@@ -1,0 +1,52 @@
+<HTML>
+<HEAD>
+  <META NAME="GENERATOR" CONTENT="Adobe PageMill 2.0 Mac">
+  <TITLE>APO Raw Contact Administrator Import</TITLE>
+</HEAD>
+<BODY>
+
+<A HREF="toc.html"><IMG SRC="back.gif" WIDTH="42" HEIGHT="22" ALIGN="RIGHT" NATURALSIZEFLAG="3" BORDER="0">Contents</A>
+<H1>Contact Dispositions</H1>
+<P>&nbsp;</P>
+
+<P>Every contact has a <I>disposition</I> that reflects his status within the
+   system. Each disposition has a code, a description, and a database representation.
+   Freshly mined, raw contacts have a nil (0) disposition. Disqualified contacts are
+   stored in the database as a negative number. As a client progresses through
+   a qualification process to ultimately become a client, his disposition will generally
+   take on higher positive values. This allows the system to more efficiently process
+   the contacts data.</P>
+
+<P><B>NOTE: <I>Although the database values are given below, it is STRONGLY
+  RECOMMENDED that you do not directly manipulate these values in the data as
+  you may corrupt the overall state of the contact record. This is because the
+  disposition works in conjunction with other fields such as callback date,
+  page number, and hard to reach count to completely describe each contact's
+  status.</I></B></P>
+
+<H2>Disposition Specifications</H2>
+ <TABLE width="90%" border="1" cellspacing="0" cellpadding="1"  align="center"
+		  class="main" summary="Contact Dispositions">
+	<THEAD ALIGN="left" VALIGN="bottom" ><TR>
+		<TD WIDTH="10%">&nbsp;Code</TD>
+				<TD WIDTH="10%">DB Representation</TD>
+				<TD WIDTH="10%">Increments HTR</TD>
+					<TD WIDTH="*">Description</TD></TR></THEAD>
+	<TBODY VALIGN="top" ALIGN="center">
+		<TR><TD>BD    </TD> <TD> -3</TD> <TD>false</TD> <TD ALIGN="left">Dead, Not Suitable, or Left Company</TD></TR>
+		<TR><TD>NI    </TD> <TD> -2</TD> <TD>false</TD> <TD ALIGN="left">Not Interested</TD></TR>
+		<TR><TD>UD    </TD> <TD> -7</TD> <TD>false</TD> <TD ALIGN="Undesirable Data - Management doesn't like</TD></TR>
+		<TR><TD>WN    </TD> <TD> -1</TD> <TD>false</TD> <TD ALIGN="left">Wrong Number - look up and resubmit</TD></TR>
+		<TR><TD>PD    </TD> <TD>  1</TD> <TD>false</TD> <TD ALIGN="left">Possible Duplicate</TD></TR>
+		<TR><TD>&nbsp;</TD> <TD>  0</TD> <TD>false</TD> <TD ALIGN="left">New Data</TD></TR>
+		<TR><TD>VM    </TD> <TD>  2</TD> <TD>true </TD> <TD ALIGN="left">Voice Mail</TD></TR>
+		<TR><TD>CB    </TD> <TD>  3</TD> <TD>true </TD> <TD ALIGN="left">Call Back</TD></TR>
+		<TR><TD>XC    </TD> <TD>  4</TD> <TD>true </TD> <TD ALIGN="left">No Connect</TD></TR>
+		<TR><TD>DC    </TD> <TD>  5</TD> <TD>true </TD> <TD ALIGN="left">Delayed Call Back</TD></TR>
+		<TR><TD>L     </TD> <TD>100</TD> <TD>false</TD> <TD ALIGN="left">Lead</TD></TR>
+	</TBODY>
+ </TABLE>
+
+<P><A HREF="toc.html"><IMG SRC="back.gif" WIDTH="42" HEIGHT="22" ALIGN="BOTTOM" NATURALSIZEFLAG="3" BORDER="0">Contents</A>
+</BODY>
+</HTML>

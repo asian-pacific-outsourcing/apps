@@ -1,0 +1,62 @@
+<HTML>
+<HEAD>
+  <META NAME="GENERATOR" CONTENT="rts">
+  <TITLE>Command Line Options</TITLE>
+</HEAD>
+<BODY>
+<A HREF="toc.html"><IMG SRC="back.gif" WIDTH="42" HEIGHT="22" ALIGN="RIGHT" NATURALSIZEFLAG="3" BORDER="0">Contents</A>
+<H1><IMG SRC="logomedium.gif" ALIGN="MIDDLE" NATURALSIZEFLAG="3">Command Line Options</H1>
+
+<P>The server and client applications can be configured via <I>optional</I>
+   arguments specified on the command line. If no arguments are specified, then
+   the program will simply run using default settings.</P>
+
+<H3>How To Specify Command Line Options</H3>
+ <P>Specifying command line arguments is operating system specific, but
+ you essentially type the options after the target command. For <I>Windows</I>
+ this is most easily accomplished by creating a <I>shortcut</I> to the program
+ then modifying its properties:
+ <OL>
+   <LI>Right click on the shortcut, and choose <B>Properties</B></LI>
+   <LI>In the <B>Target</B> field, enter the desired arguments</LI>
+ </OL>
+ <B>Note 1:</B> Be sure to leave a space between each argument as well as
+    between the command and the first argument.<BR>
+ <B>Note 2:</B> Be sure to <I>not</I> leave any spaces between the colon (<B>:</B>)
+    separating the option name and its value.
+ </P>
+
+<H3>Available Command Line Options</H3>
+ <P>In the following list, some commands take a value, these are prefixed with
+    a hyphen and contain a colon separating the command from the value. For
+    example <B>-u:rick</B> is the <I>user command</I> with a value of <I>rick</I>.
+    It will automatically cause the user field of the login screen to with "rick".</P>
+ <P>Other commands turn on a certain behavior: These command have no hyphen or colon.</P>
+
+ <UL>
+	<LI><B>-u:<I>value</I></B> Sets the user login name. Defaults to blank.</LI>
+	<LI><B>-port:<I>value</I></B> Sets the server port. If the server is started
+       with this command, then all of the clients must also specify the same
+       port value. Defaults to port 8080.</LI>
+	<LI><B>-mode:<I>value</I></B> This is application specific:
+       <UL>
+        <LI>For the application server it specifies the
+            <A HREF="modes.html">server mode</A>.</LI>
+        <LI>For applications like TQ and VO, where the employee follows a script,
+            the <I>value</I> specifies the script. When this option is not
+            specified, the contact fields screen is used instead.
+            However, this functionality is not fully implemented or released.</LI>
+        <LI>For DM, the mode is only used for debugging.</LI>
+       </UL></LI>
+	<LI><B>x509</B> Enables <A HREF="x509.html">X509 certificate</A> security.</LI>
+	<LI><B>loopback</B> Runs the server as a localhost (IP: 127.0.0.1) for
+       development and debugging.</LI>
+	<LI><B>remote</B> For client applications, causes the application to
+       access the application server via the Internet. For this option to
+       work correctly, <I>port forwarding</I> must be enabled on the
+       router, as set up by JP</LI>
+ </UL>
+<A HREF="toc.html"><IMG SRC="back.gif" WIDTH="42" HEIGHT="22" ALIGN="RIGHT" NATURALSIZEFLAG="3" BORDER="0">Contents</A>
+<BR>Updated: Wednesday, October 20, 2010 19:33:56
+</BODY>
+</HTML>

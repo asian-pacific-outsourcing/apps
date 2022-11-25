@@ -1,0 +1,70 @@
+<HTML>
+<HEAD>
+  <META NAME="GENERATOR" CONTENT="Adobe PageMill 2.0 Mac">
+  <TITLE>APO Raw Contact Administrator Import</TITLE>
+</HEAD>
+<BODY>
+
+<H1>APO Raw Contact Administrator Import</H1>
+<A HREF="toc.html"><IMG SRC="back.gif" WIDTH="42" HEIGHT="22" ALIGN="RIGHT" NATURALSIZEFLAG="3" BORDER="0">Contents</A>
+<P>&nbsp;</P>
+
+<P>The <B><I>Import</I></B> tab presents an interface to specify a csv file to import
+  and to supply default values for any missing columns in the CSV file.
+  <BR><B>Note:</B> This screen incorporates <I>Drag and Drop</I> technology when
+  available from the operating system, so in general, it's easiest to just drag
+  individual files onto the import panel and drop them to initiate the import.
+  However, <B>only import one file at time!</B></P>
+
+<P>As the importer reads each line of the csv file it creates a new contact record in
+  the database if the record is unique and valid. More specifically, the importer
+  follows these steps:
+  <OL>
+   <LI>To check the file:
+    <UL>
+     <LI>Opens the file to make sure it exists and is readable.</LI>
+     <LI>Reads the first line to ensure that the column headers supplied
+       match the expected column headers.<BR> <B>Note:</B> The columns must
+       be in the expected order. Furthermore, at least the first 9 columns
+       must be present (<I>id</I> through <I>WebSite</I>; the remaining
+       columns can use default values. However, if any of the optional
+       columns are specified, then all expected columns to the left of
+       the optional column must be present.</LI>
+     <LI>Reads the entire file to count the lines.</LI>
+     <LI>Closes the file and reopens it for processing.</LI>
+     <LI>Connects to the database in exclusive mode and determines the
+       next available contact id number.</LI>
+    </UL></LI>
+   <LI>To process each line:
+    <UL>
+     <LI>Reads one line skipping over any nonprinable characters.</LI>
+     <LI>Parses the individual fields checking for the correct data type,
+        and verifying that required fields are not blank. Data is also
+        converted to internal format (proper, dates, lookups, etc). Any
+        errors cause the line to be rejected, and the importer skips to
+        the next line.</LI>
+     <LI>Insets default values into any blank but not required fields.</LI>
+     <LI>Ensures that at least one phone number has been supplied. If not,
+        this line is rejected, and the importer goes on to the next line.</LI>
+     <LI>Compares the new name and phone numbers with existing names and
+        and numbers and rejects any exact matches as duplicates.</LI>
+     <LI>Compares the new name and company with existing names and companies.
+        Any very similar values are dispositioned as <I>potential duplicates</I>
+        for subsequent manual processing via the <B><I>Raw Disposition</I></B>
+        application.</LI>
+     <LI>Assigns the new data a unique <I>id</I>, inserts it into the database
+        then proceeds to the next line in the file.</LI>.
+    </UL></LI>
+   <LI>To clean up:
+    <UL>
+     <LI>Disconnects from the database.</LI>
+     <LI>Closes the csv file.</LI>
+     <LI>Logs statistics including counts of lines read, errors encountered,
+       and duplicates rejected, as well as the actual time required.</LI>
+    </UL></LI></OL></P>
+
+
+
+<P><A HREF="toc.html"><IMG SRC="back.gif" WIDTH="42" HEIGHT="22" ALIGN="BOTTOM" NATURALSIZEFLAG="3" BORDER="0">Contents</A>
+</BODY>
+</HTML>

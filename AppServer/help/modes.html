@@ -1,0 +1,131 @@
+<HTML>
+<HEAD>
+  <META NAME="AUTHOR" CONTENT="Shane Bow">
+  <TITLE>Server Modes</TITLE>
+</HEAD>
+<BODY>
+<A HREF="toc.html"><IMG SRC="back.gif" WIDTH="42" HEIGHT="22" ALIGN="RIGHT" NATURALSIZEFLAG="3" BORDER="0">Contents</A>
+<H1><IMG SRC="logomedium.gif" ALIGN="MIDDLE" NATURALSIZEFLAG="3">Server Modes of Operation</H1>
+
+<H2>Overview</H2>
+<P><B><I>Server</I></B> is configurable <I>at start up</I> to
+ run in various modes. Each mode may optionally be run with
+ <A HREF="x509.html">X509 certificates</A>. These modes along
+ with their run() methods are listed below.</P>
+
+  <P>The "B*" modes use classic blocking I/O:  in other words, calls to
+     read()/write() will not return until the I/O operation has completed.
+  </P>
+  <P>The "N*" modes are non-blocking, employing <I>selectors</I> to
+     determine which Channels are ready to perform I/O.
+  </P>
+
+ <H2>Blocking Modes</H2>
+   <P>Following a successful accept(), the "B*" variants each create a
+      RequestServicer object to perform the actual request/reply operations.
+      The primary differences between the different "B*" servers is how the
+      RequestServicer is actually run:
+
+    B1: RequestServicer.run() is directly called.
+    BN:	 A new thread is started, and the thread calls RequestServicer.run().
+    BP: A ThreadPool is created, and the pool framework is given Runnable
+	tasks to complete.
+
+   <H3>B1 <I>Blocking/Single-threaded Server</I></H3>
+    <P>A blocking/single-threaded server which completely services
+       each connection before moving to the next.
+    </P>
+    <PRE>
+   public void runServer() throws Exception
+      {
+      while (true)
+         {
+         SocketChannel sc = ssc.accept();
+
+         ChannelIO cio = (sslContext != null ?
+            ChannelIOSecure.getInstance( sc, true /* blocking */, sslContext)
+            : ChannelIO.getInstance( sc, true /* blocking */));
+
+         RequestServicer svc = new RequestServicer(cio);
+         svc.run();
+         }
+      }
+    </PRE>
+   <H3>BN <I>Blocking/Multi-threaded Server</I></H3>
+    <P>A Blocking/Multi-threaded Server which creates a new thread for each
+       connection.  This is not efficient for large numbers of connections.
+    </P>
+    <PRE>
+   public void runServer() throws IOException
+      {
+      while (true)
+         {
+         SocketChannel sc = ssc.accept();
+
+         ChannelIO cio = (sslContext != null ?
+            ChannelIOSecure.getInstance( sc, true /* blocking */, sslContext)
+          :   ChannelIO.getInstance( sc, true /* blocking */));
+
+         RequestServicer svc = new RequestServicer(cio);
+         Thread th = new Thread(svc);
+         th.start();
+         }
+      }
+    </PRE>
+   <H3>BP <I>Blocking/Pooled-Thread Server</I></H3>
+    <P>A multi-threaded server which creates a pool of threads for use
+       by the server. The Thread pool decides how to schedule those
+       threads.
+    </P>
+    <PRE>
+   public void runServer() throws Exception
+      {
+      ExecutorService xec = Executors.newFixedThreadPool(
+       Runtime.getRuntime().availableProcessors() * POOL_MULTIPLE);
+
+      while (true)
+         {
+         SocketChannel sc = ssc.accept();
+
+         ChannelIO cio = (sslContext != null ?
+            ChannelIOSecure.getInstance( sc, true /* blocking */, sslContext)
+          :   ChannelIO.getInstance( sc, true /* blocking */));
+
+         RequestServicer svc = new RequestServicer(cio);
+         xec.execute(svc);
+         }
+      }
+    </PRE>
+
+ <H2>Nonblocking Modes</H2>
+   <H3>N1</B>   Nonblocking/Single-threaded Server</I></H3>
+    <P>A non-blocking/single-threaded server.  All accept() and
+       read()/write() operations are performed by a single thread, but
+       only after being selected for those operations by a Selector.
+    </P>
+    <PRE>
+   public void runServer() throws Exception
+      {
+      Dispatcher d = new Dispatcher1();
+      d.register(ssc, SelectionKey.OP_ACCEPT, new AcceptHandler(ssc, d, sslContext));
+      d.run();
+      }
+    </PRE>
+   <H3>N2</B>   Nonblocking/Dual-threaded Server</I></H3>
+    <P>A non-blocking/dual-threaded which performs accept()s in one
+       thread and services requests in a second.
+    </P>
+    <PRE>
+   public void runServer() throws Exception
+      {
+      Dispatcher d = new DispatcherN();
+      Acceptor a = new Acceptor(ssc, d, sslContext);
+      new Thread(a).start();
+      d.run();
+      }
+    </PRE>
+
+<BR>Updated: Wednesday, October 20, 2010 19:33:56
+<P><A HREF="toc.html"><IMG SRC="back.gif" WIDTH="42" HEIGHT="22" ALIGN="BOTTOM" NATURALSIZEFLAG="3" BORDER="0">Contents</A>
+</BODY>
+</HTML>

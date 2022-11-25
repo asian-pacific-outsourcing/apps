@@ -1,0 +1,3 @@
+Main-Class: com.apo.apps.miner.DM._DM
+Class-Path: _sbcommon.jar _sbdao.jar _apo.jar _apoclient.jar . 
+

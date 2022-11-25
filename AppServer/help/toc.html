@@ -1,0 +1,51 @@
+<HTML>
+<HEAD>
+  <META NAME="GENERATOR" CONTENT="rts">
+  <TITLE>Application Server Help</TITLE>
+</HEAD>
+<BODY>
+
+<H1><IMG SRC="logomedium.gif" ALIGN="MIDDLE" NATURALSIZEFLAG="3">Application Server Help</H1>
+
+<P><B><I>Application Server</I></B>  is a secure server configurable
+  to run in various blocking or non-blocking modes to
+  service clients over the Internet or local network.</P>
+
+<H3>Start Up</H3>
+ <P><B><I>Server</I></B> is configured at start up to run in one of
+   the following <A HREF="modes.html">modes</A>:
+   <UL>
+    <LI><B>B1</B>	Blocking/Single-threaded Server</LI>
+    <LI><B>BN</B>	Blocking/Multi-threaded Server</LI>
+    <LI><B>BP</B>	Blocking/Pooled-Thread Server</LI>
+    <LI><B>N1</B>	Nonblocking/Single-threaded Server</LI>
+    <LI><B>N2</B>	Nonblocking/Dual-threaded Server</LI>
+   </UL>
+   In addition to the mode, the following <A HREF="cmdline.html">settings</A>
+   are specified once at start up:
+   <UL>
+    <LI><B>Port</B>   The physical port number upon which this servers receives request</LI>
+    <LI><B>x509</B>   Whether the server should run in secure mode (requires
+                      an <A HREF="x509.html">X509 Certificate</A>)</LI>
+   </UL>
+  </P>
+
+<H3>Topics</H3>
+ <UL>
+  <LI><A HREF="cmdline.html">Command Line Options</A>
+  <LI><A HREF="modes.html">Modes of Operation</A></LI>
+  <LI><A HREF="protocol.html">Network Messaging Protocol</A>
+  <LI><A HREF="x509.html">Running in Secure Mode</A>
+  <LI><A HREF="dispo.html">Dispositions</A>
+  <LI><A HREF="credits.html">Credits</A>
+ </UL>
+<BR><BR><BR><BR><BR><BR>
+<HR><FONT SiZE="TINY"><CENTER>Application Server<BR>
+	Copyright (c) 2010  Shane Bow<BR></CENTER>
+Unless required by applicable law or agreed to in writing, this
+  software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES
+  OR CONDITIONS OF ANY KIND, either express or implied.</FONT>
+
+<BR>Updated: Wednesday, October 20, 2010 19:33:56
+</BODY>
+</HTML>
